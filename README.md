@@ -24,4 +24,4 @@ node DOM-changes-logger.js 'https://www.google.com/'
 
 **Messages**:
 
-<img src="msg.png" style="width: 20px; height: 40px">
+<img src="images/msg.png" style="width: 20px; height: 40px">
