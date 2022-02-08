@@ -20,7 +20,7 @@ node DOM-changes-logger.js 'https://www.google.com/'
 
 **Icons**:
 
-<img src="icons.png" style="width: 20px; height: 40px">
+<img src="images/icons.png" style="width: 20px; height: 40px">
 
 **Messages**:
 
