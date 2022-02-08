@@ -20,10 +20,8 @@ node DOM-changes-logger.js 'https://www.google.com/'
 
 **Icons**:
 
-![alt text for screen readers](images/icons.png "Text to show on mouseover").
-
-<img src="images/icons.png" style="width: 20px; height: 40px">
+![alt text for screen readers](images/icons.png "Icons").
 
 **Messages**:
 
-<img src="images/msg.png" style="width: 20px; height: 40px">
+![alt text for screen readers](images/msg.png "Log messages").
