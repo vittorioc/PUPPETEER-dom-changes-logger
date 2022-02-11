@@ -1,8 +1,11 @@
 'use strict';
 
 const puppeteer = require('puppeteer');
-const fs = require('fs');
-const HTMLDecoderEncoder = require("html-encoder-decoder");
+
+const { logAppend } = require('./libs-nodejs/logAppend');
+const { createLiElement } = require('./libs-nodejs/createLiElement');
+
+const { removeElement } = require('./libs-browser/removeElement');
 
 const myArgs = process.argv.slice(2);
 
@@ -19,52 +22,6 @@ const options = {
     ignoreDefaultArgs: ['--enable-automation'],
     defaultViewport: null
 };
-
-const dataOra = () => {
-    // Offset in milliseconds
-    let dataOffset = (new Date()).getTimezoneOffset() * 60000;
-    // Subtract the timezone, stringfy and crop the last chars
-    return (new Date(Date.now() - dataOffset)).toISOString().replace(/\..+/, '');
-}
-
-const logAppend = (() => {
-    // let fileName = logDirPath + dataOra().replace(/T/, '_').replace(/:/g, '-') + '.html';
-    let fileName = dataOra().replace(/T/, '_').replace(/:/g, '-') + '.html';
-    return async(log) => {
-        fs.appendFile(
-            fileName,
-            '\n' + log,
-            (err) => {
-                if (err) {
-                    console.log("fileLog error:", err);
-                    throw err;
-                } else {
-                    console.log(log);
-                }
-            }
-        );
-    };
-})();
-
-const createLiElement = (iconName, xpath, oldValue, newValue) => {
-    let timestamp = dataOra().replace(/T/, ' ');
-    // https://github.com/IonicaBizau/html-encoder-decoder
-    let oldV = oldValue ? HTMLDecoderEncoder.encode(oldValue) : '';
-    let newV = newValue ? HTMLDecoderEncoder.encode(newValue) : '';
-    return `<li>` +
-        `<div style="display: flex">` +
-        `<div style="flex-basis: 37px; flex-shrink: 0; flex-grow: 0; align-self: flex-start">` +
-        `<img src="icons/${iconName}" style="width: 20px; height: 20px; display: block; position: relative; transform: translateX(-50%); left: 50%">` +
-        `</div>` +
-        `<div style="position: relative; margin: 0; width: calc(100% - 55px); white-space: normal; overflow-wrap: break-word; hyphens: none">` +
-        `<span style="color: #c3e88d !important">[${timestamp}]</span>` +
-        `<span style="color: #2a66a2 !important">${xpath} </span>` +
-        `<span style="color: #bf6363 !important">${oldV} </span>` +
-        `<span style="color: #db911e !important">${newV} </span>` +
-        `</div>` +
-        `</div>` +
-        `</li>`;
-}
 
 switch (myArgs.length) {
     case 1:
