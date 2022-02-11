@@ -49,8 +49,6 @@ switch (myArgs.length) {
             await page.exposeFunction('logger', (iconName, xpath, oldValue, newValue) => logAppend(createLiElement(iconName, xpath, oldValue, newValue)));
 
             while (true) {
-                // Library to get the xpath of an element modified version of
-                // https://github.com/testimio/DOMPath
                 await page.addScriptTag({ path: 'libs-browser/chrome-dompath-browserified.js' });
                 await page.$eval('body', element => {
                     const DOMPath = require('chrome-dompath');
