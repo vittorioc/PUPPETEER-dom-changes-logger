@@ -94,7 +94,7 @@ switch (myArgs.length) {
             while (true) {
                 // Library to get the xpath of an element modified version of
                 // https://github.com/testimio/DOMPath
-                await page.addScriptTag({ path: 'chrome-dompath-browserified.js' });
+                await page.addScriptTag({ path: 'libs-browser/chrome-dompath-browserified.js' });
                 await page.$eval('body', element => {
                     const DOMPath = require('chrome-dompath');
                     const observer = new MutationObserver(mutationsList => {
