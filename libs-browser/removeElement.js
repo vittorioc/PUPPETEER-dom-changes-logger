@@ -6,5 +6,3 @@ const removeElement = (sel) => {
         }
     }
 };
-
-module.exports = { removeElement }
